@@ -3,6 +3,7 @@ import psycopg2
 import psycopg2.extras
 import yaml
 import model
+from marshmallow import pre_dump
 from marshmallow_jsonapi import Schema, fields
 
 class NewsProvider (model.Provider):
@@ -54,7 +55,7 @@ class NewsProvider (model.Provider):
                 return None
 
     def read_by_news_id (self, news_id):
-       with self.get_db_cursor() as cur:
+        with self.get_db_cursor() as cur:
            cur.execute("SELECT * FROM news WHERE news_id = (%s)", (news_id,))
            res = cur.fetchone()
 
@@ -83,7 +84,15 @@ class NewsSchema(Schema):
     excerpt = fields.Str()
     timestamp_publish = fields.DateTime("%Y-%m-%dT%H:%M:%S+00:00")
     url = fields.Url()
-    image_url = fields.Url()
+    image_url = fields.Url(allow_none=True)
     lang = fields.Str()
+
+    @pre_dump
+    def empty_image_url_to_none(self, data):
+        if not data.image_url:
+            data.image_url = None
+        return data
+
     class Meta:
         type_ = "news"
+        strict = True
