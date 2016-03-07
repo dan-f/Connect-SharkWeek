@@ -8,7 +8,7 @@ Stack is [marshmallow](https://github.com/marshmallow-code/marshmallow) and [mar
 
 Install via pip:
 ```bash
-pip install marshmallow marshmallow-jsonapi Flask pyYAML flask-marshmallow psycopg2
+pip install -r requirements.txt
 ```
 #### Sample config
 Config file goes in ```/opt/bernie/config.yml``` (you can use the same config as [Sharknado](https://github.com/Bernie-2016/Connect-Sharknado) if you are running on the same box and db)
