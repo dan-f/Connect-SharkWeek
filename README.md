@@ -2,16 +2,31 @@
 Public API for [Sharknado](https://github.com/Bernie-2016/Connect-Sharknado) using the [JSON API 1.0 Spec](http://jsonapi.org/)
 [Newsfeed spec](https://github.com/Bernie-2016/Connect-Sharknado/issues/1)
 
-#### Requirements
-Stack is [marshmallow](https://github.com/marshmallow-code/marshmallow) and [marshmallow-jsonapi](https://github.com/marshmallow-code/marshmallow-jsonapi) for serialization to JSON API Spec.
-[Flask](https://github.com/mitsuhiko/flask) for routing and output.
+## Development
+Make sure you have the following installed:
+* postgresql 9.4
+* python 3.4
 
-Install via pip:
+It's also recommended that you use `virtualenv`, `virtualenvwrapper`,
+or a similar tool to keep your development environment isolated from
+the rest of your system.
+
+Install all requirements:
 ```bash
-pip install -r requirements.txt
+make develop
 ```
-#### Sample config
-Config file goes in ```/opt/bernie/config.yml``` (you can use the same config as [Sharknado](https://github.com/Bernie-2016/Connect-Sharknado) if you are running on the same box and db)
+
+Test code quality:
+```bash
+make quality
+```
+
+## Production
+App configuration is currently defined in the `/opt/bernie/config.yml`
+file, which shares the same config settings as
+[Sharknado](https://github.com/Bernie-2016/Connect-Sharknado).
+
+### Sample config
 ```yaml
 postgresql:
     dbname: __postgres__
