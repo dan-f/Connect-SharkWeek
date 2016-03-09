@@ -6,6 +6,9 @@ install:
   - pip install -r dev-requirements.txt
 script:
   - pep8 .
+  - python app/articles/test_articles.py
+  - python app/news/test_news.py
+  - python app/videos/test_videos.py
 branches:
     only:
       - master
