@@ -1,12 +1,9 @@
+import abc
 import logging
-import pprint
+import yaml
+
 import psycopg2
 import psycopg2.extras
-import yaml
-import abc
-import uuid
-from uuid import UUID
-from datetime import datetime
 
 
 psycopg2.extras.register_uuid()
@@ -44,7 +41,7 @@ class Provider:
                 conf = yaml.load(f)
         except IOError:
             msg = "Could not open config file: {0}"
-            logging.info(msg.format(self.configfile))
+            logging.info(msg.format(self.configfile))  # pylint: disable=logging-format-interpolation
             raise
         else:
             return conf
