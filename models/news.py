@@ -1,13 +1,10 @@
 from __future__ import generators
-import psycopg2
-import psycopg2.extras
-import yaml
 import model
 from marshmallow import pre_dump
 from marshmallow_jsonapi import Schema, fields
 
 
-class NewsProvider (model.Provider):
+class NewsProvider(model.Provider):
     table_name = "news"
 
     def exists(self, uuid):
@@ -76,7 +73,7 @@ class NewsProvider (model.Provider):
                 return None
 
 
-class News (model.Model):
+class News(model.Model):
     object_type = 'news'
 
 
